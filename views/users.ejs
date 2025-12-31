@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Users</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>👤 Users</h1>
+
+    <!-- Add User Card -->
+    <form class="form-card" action="/users/add" method="POST">
+
+      <h3>Add New User</h3>
+
+      <div class="form-group">
+        <label for="name">User Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter user name" required>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit">Add User</button>
+      </div>
+
+    </form>
+
+    <hr>
+
+    <!-- Users Table -->
+    <h3>Registered Users</h3>
+
+    <table>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Action</th>
+      </tr>
+
+      <% if (users.length===0) { %>
+        <tr>
+          <td colspan="3" style="text-align:center;">No users found</td>
+        </tr>
+        <% } %>
+
+          <% users.forEach((user, index)=> { %>
+            <tr>
+              <td>
+                <%= index + 1 %>
+              </td>
+              <td>
+                <%= user.name %>
+              </td>
+              <td>
+                <!-- View borrowed books -->
+                <a href="/users/<%= user.id %>/books" class="btn" style="margin-right:8px;">
+                  View Books
+                </a>
+
+                <!-- Delete user -->
+                <form action="/users/delete/<%= user.id %>" method="POST" onsubmit="return confirmDelete()"
+                  style="display:inline;">
+                  <button type="submit">Delete</button>
+                </form>
+              </td>
+
+            </tr>
+            <% }) %>
+    </table>
+
+    <br>
+    <a href="/">⬅ Back to Home</a>
+
+  </div>
+
+  <script src="/js/script.js"></script>
+</body>
+
+</html>

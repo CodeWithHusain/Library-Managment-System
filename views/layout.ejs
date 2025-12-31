@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Page title -->
+    <title>
+        <%= title %>
+    </title>
+
+    <!-- Public CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <h2>Library Management System</h2>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/books/view">Books</a>
+            <a href="/books/add">Add Book</a>
+            <a href="/users/view">Users</a>
+        </nav>
+    </header>
+
+    <!-- Page content -->
+    <div class="container">
+        <%- body %>
+    </div>
+
+    <!-- Public JS -->
+    <script src="/js/script.js"></script>
+
+</body>
+
+</html>

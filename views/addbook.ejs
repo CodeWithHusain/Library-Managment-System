@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Add Book</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>➕ Add New Book</h1>
+
+    <form class="form-card" action="/books/add" method="POST">
+
+      <div class="form-group">
+        <label>Book Title</label>
+        <input type="text" name="title" required>
+      </div>
+
+      <div class="form-group">
+        <label>Author</label>
+        <input type="text" name="author" required>
+      </div>
+
+      <div class="form-group">
+        <label>Issued To</label>
+        <select name="issuedTo" required>
+          <% users.forEach(user=> { %>
+            <option value="<%= user.id %>">
+              <%= user.name %>
+            </option>
+            <% }) %>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Issued By</label>
+        <select name="issuedBy" required>
+          <% admins.forEach(admin=> { %>
+            <option value="<%= admin.id %>">
+              <%= admin.name %>
+            </option>
+            <% }) %>
+        </select>
+      </div>
+
+      <button type="submit">Add Book</button>
+    </form>
+
+
+  </div>
+
+</body>
+
+</html>

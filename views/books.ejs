@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Books</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div class="container">
+
+    <h1>📚 Books</h1>
+
+    <div style="margin-bottom: 20px; text-align: right;">
+      <a href="/books/add" class="btn">➕ Add New Book</a>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Status</th>
+          <th>Issued To</th>
+          <th>Issued By</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% if (!books || books.length === 0) { %>
+          <tr>
+            <td colspan="7" style="text-align:center;">
+              No books available
+            </td>
+          </tr>
+        <% } else { %>
+
+          <% books.forEach((book, index) => { %>
+            <tr>
+              <td><%= index + 1 %></td>
+
+              <td><%= book.title %></td>
+
+              <td><%= book.author %></td>
+
+              <td>
+                <% if (book.status && book.status === "Available") { %>
+                  <span class="available">Available</span>
+                <% } else { %>
+                  <span class="issued">Issued</span>
+                <% } %>
+              </td>
+
+              <td>
+                <%= (book.issued_to && book.issued_to.trim()) ? book.issued_to : "-" %>
+              </td>
+
+              <td>
+                <%= (book.issued_by && book.issued_by.trim()) ? book.issued_by : "-" %>
+              </td>
+
+              <td>
+                <form 
+                  action="/books/delete/<%= book.id %>" 
+                  method="POST" 
+                  onsubmit="return confirmDelete();"
+                  style="display:inline;"
+                >
+                  <button type="submit">Delete</button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+
+        <% } %>
+      </tbody>
+    </table>
+
+    <br>
+    <a href="/">⬅ Back to Home</a>
+
+  </div>
+
+  <script src="/js/script.js"></script>
+</body>
+</html>
